@@ -1,0 +1,28 @@
+.resultContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+
+  p {
+    color: white;
+    border: 1px solid rgb(180, 180, 180);
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+  }
+  button {
+    color: white;
+    padding: 0 1rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(180, 180, 180);
+    cursor: pointer;
+  }
+  .copied {
+    background-color: aqua;
+    color: red;
+  }
+}

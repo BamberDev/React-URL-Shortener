@@ -1,0 +1,26 @@
+.inputContainer {
+  display: flex;
+
+  input {
+    width: 200px;
+    height: 2rem;
+    padding: 0.5rem 0.2rem 0.5rem 0;
+    text-indent: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgb(210, 210, 210);
+  }
+  button {
+    color: white;
+    padding: 0 1rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(180, 180, 180);
+    cursor: pointer;
+  }
+}
