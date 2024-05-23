@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import styles from "./LinkResult.module.scss";
 
 const LinkResult = ({ inputValue }) => {
-  const [shortenedLink, setShortenedLink] = useState("LINK");
-  const [copied, setCopied] = useState(false);
+  const [shortenedLinks, setShortenedLinks] = useState([]);
+  const [copiedIndex, setCopiedIndex] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const shortenUrl = async () => {
@@ -19,45 +21,84 @@ const LinkResult = ({ inputValue }) => {
 
         if (response.ok) {
           const result = await response.text();
-          setShortenedLink(result);
+          setShortenedLinks((prevLinks) => [
+            ...prevLinks,
+            { original: inputValue, shortened: result },
+          ]);
+          setError("");
         } else {
-          setShortenedLink("Failed to shorten URL");
+          throw new Error("Failed to shorten URL");
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setError("Failed to shorten URL. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
 
-    if (inputValue) {
+    if (inputValue && shortenedLinks.length < 10) {
       shortenUrl();
+    } else if (inputValue && shortenedLinks.length >= 10) {
+      setError("You can shorten a maximum of 10 links.");
     }
   }, [inputValue]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCopied(false);
-    }, 2000);
+      setCopiedIndex(null);
+    }, 2500);
     return () => clearTimeout(timer);
-  }, [copied]);
+  }, [copiedIndex]);
+
+  const handleClearLinks = () => {
+    setShortenedLinks([]);
+    setError("");
+  };
 
   return (
-    <div className={styles.resultContainer}>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <p>{shortenedLink}</p>
-          <CopyToClipboard text={shortenedLink} onCopy={() => setCopied(true)}>
-            <button className={copied ? styles.copied : ""}>
-              Copy to clipboard
-            </button>
-          </CopyToClipboard>
-        </>
+    <div className={styles.container}>
+      {loading && <p className={styles.loader}>Loading...</p>}
+      <div className={styles.resultContainer}>
+        {error && <p className={styles.error}>{error}</p>}
+        {shortenedLinks.map((link, index) => (
+          <div key={index} className={styles.linkContainer}>
+            <div className={styles.links}>
+              <p>
+                {index + 1}. {link.shortened}
+              </p>
+              <p className={styles.originalLink}>
+                {link.original.length > 25
+                  ? `${link.original.slice(0, 25)}...`
+                  : link.original}
+              </p>
+            </div>
+            <CopyToClipboard
+              text={link.shortened}
+              onCopy={() => setCopiedIndex(index)}
+            >
+              <button
+                className={
+                  copiedIndex === index ? styles.copied : styles.copyButton
+                }
+                aria-label="Copy URL button"
+              >
+                {copiedIndex === index ? "Copied!" : "Copy"}
+              </button>
+            </CopyToClipboard>
+          </div>
+        ))}
+      </div>
+      {shortenedLinks.length > 0 && (
+        <button className={styles.clearButton} onClick={handleClearLinks}>
+          CLEAR
+        </button>
       )}
     </div>
   );
 };
 
 export default LinkResult;
+
+LinkResult.propTypes = {
+  inputValue: PropTypes.string.isRequired,
+};
