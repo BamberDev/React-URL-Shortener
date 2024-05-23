@@ -1,28 +1,71 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .resultContainer {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 5px 10px;
+}
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 
   p {
     color: white;
-    border: 1px solid rgb(180, 180, 180);
-    padding: 0.5rem 1rem;
-    margin-right: 1rem;
-  }
-  button {
-    color: white;
-    padding: 0 1rem;
-    height: 2rem;
-    font-size: 1rem;
-    font-weight: bold;
+    padding: 5px 10px;
     border-radius: 5px;
-    border: none;
-    background-color: rgb(180, 180, 180);
-    cursor: pointer;
   }
-  .copied {
-    background-color: aqua;
-    color: red;
-  }
+}
+
+.links {
+  width: 250px;
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+button {
+  color: white;
+  padding: 0 10px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(180, 180, 180);
+  cursor: pointer;
+}
+
+.copied {
+  background-color: white;
+  color: black;
+  width: 100px;
+}
+
+.copyButton {
+  width: 100px;
+}
+
+.loader {
+  color: white;
+  border: 1px solid rgb(180, 180, 180);
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+  border: none;
 }
