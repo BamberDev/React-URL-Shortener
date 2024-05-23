@@ -21,7 +21,7 @@ function InputShortener({ setInputValue }) {
 
   return (
     <div className={styles.inputContainer}>
-      <h1>
+      <h1 className={styles.title}>
         URL <span>Shortener</span>
       </h1>
       <div>
