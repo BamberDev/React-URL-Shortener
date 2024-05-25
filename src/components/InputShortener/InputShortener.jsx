@@ -31,7 +31,9 @@ function InputShortener({ setInputValue }) {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <button onClick={handleClick}>SHORTEN</button>
+        <button onClick={handleClick} className={styles.shortenButton}>
+          SHORTEN
+        </button>
       </div>
     </div>
   );

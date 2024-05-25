@@ -18,7 +18,6 @@ const LinkResult = ({ inputValue }) => {
             inputValue
           )}`
         );
-
         if (response.ok) {
           const result = await response.text();
           setShortenedLinks((prevLinks) => [
@@ -56,15 +55,23 @@ const LinkResult = ({ inputValue }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.resultContainer}>
       {loading && <p className={styles.loader}>Loading...</p>}
-      <div className={styles.resultContainer}>
+      {shortenedLinks.length > 0 && (
+        <button className={styles.clearButton} onClick={handleClearLinks}>
+          CLEAR
+        </button>
+      )}
+      <div className={styles.results}>
         {error && <p className={styles.error}>{error}</p>}
         {shortenedLinks.map((link, index) => (
-          <div key={index} className={styles.linkContainer}>
+          <div key={index} className={styles.linkItem}>
             <div className={styles.links}>
               <p>
-                {index + 1}. {link.shortened}
+                {index + 1}.{" "}
+                <a href={link.shortened} target="_blank" rel="noreferrer">
+                  {link.shortened}
+                </a>
               </p>
               <p className={styles.originalLink}>
                 {link.original.length > 25
@@ -82,17 +89,12 @@ const LinkResult = ({ inputValue }) => {
                 }
                 aria-label="Copy URL button"
               >
-                {copiedIndex === index ? "Copied!" : "Copy"}
+                {copiedIndex === index ? "Copied!" : "Copy URL"}
               </button>
             </CopyToClipboard>
           </div>
         ))}
       </div>
-      {shortenedLinks.length > 0 && (
-        <button className={styles.clearButton} onClick={handleClearLinks}>
-          CLEAR
-        </button>
-      )}
     </div>
   );
 };
