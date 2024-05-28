@@ -38,7 +38,7 @@ const LinkResult = ({ inputValue }) => {
     if (inputValue && shortenedLinks.length < 10) {
       shortenUrl();
     } else if (inputValue && shortenedLinks.length >= 10) {
-      setError("You can shorten a maximum of 10 links.");
+      setError("You can shorten max 10 links.");
     }
   }, [inputValue]);
 
@@ -56,7 +56,7 @@ const LinkResult = ({ inputValue }) => {
 
   return (
     <div className={styles.resultContainer}>
-      {loading && <p className={styles.loader}>Loading...</p>}
+      {loading && <p className={styles.loader}>Shortening...</p>}
       {shortenedLinks.length > 0 && (
         <button className={styles.clearButton} onClick={handleClearLinks}>
           CLEAR
