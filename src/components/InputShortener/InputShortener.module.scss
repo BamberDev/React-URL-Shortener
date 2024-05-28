@@ -5,6 +5,19 @@
   .title {
     color: white;
     text-align: center;
+    font-size: 40px;
+
+    @media (min-width: 420px) {
+      font-size: 46px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 52px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 58px;
+    }
   }
 
   input {
@@ -18,6 +31,16 @@
     border-bottom-left-radius: 5px;
     outline: none;
     background-color: rgb(210, 210, 210);
+
+    @media (min-width: 420px) {
+      font-size: 18px;
+      width: 250px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 22px;
+      width: 300px;
+    }
   }
 
   .shortenButton {
@@ -31,5 +54,13 @@
     border: none;
     background-color: rgb(180, 180, 180);
     cursor: pointer;
+
+    @media (min-width: 420px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 22px;
+    }
   }
 }
