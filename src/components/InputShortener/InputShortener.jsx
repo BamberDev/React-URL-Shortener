@@ -4,6 +4,7 @@ import styles from "./InputShortener.module.scss";
 
 function InputShortener({ setInputValue }) {
   const [value, setValue] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const isValidUrl = (url) => {
     const pattern = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -14,8 +15,12 @@ function InputShortener({ setInputValue }) {
     if (isValidUrl(value)) {
       setInputValue(value);
       setValue("");
+      setShowAlert(false);
     } else {
-      alert("Please enter a valid URL.");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2500);
     }
   };
 
@@ -27,6 +32,9 @@ function InputShortener({ setInputValue }) {
 
   return (
     <div className={styles.inputContainer}>
+      {showAlert && (
+        <div className={styles.alert}>Please enter a valid URL.</div>
+      )}
       <h1 className={styles.title}>
         URL <span>Shortener</span>
       </h1>
