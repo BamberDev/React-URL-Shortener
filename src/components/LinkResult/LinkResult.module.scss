@@ -11,8 +11,16 @@
     font-weight: bold;
     border-radius: 5px;
     border: none;
-    background-color: rgb(180, 180, 180);
+    background-color: rgb(140, 140, 140);
     cursor: pointer;
+  }
+
+  .clearButton {
+    margin: 10px 0 5px 0;
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+    }
   }
 
   .copyButton {
@@ -21,17 +29,20 @@
 
     @media (min-width: 768px) {
       margin: 0;
+      font-size: 18px;
     }
-  }
-
-  .clearButton {
-    margin: 10px 0 5px 0;
   }
 
   .copied {
     background-color: white;
     color: black;
     width: 100px;
+    margin: 5px 0;
+
+    @media (min-width: 768px) {
+      margin: 0;
+      font-size: 18px;
+    }
   }
 }
 
@@ -56,14 +67,30 @@
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
+
+    @media (min-width: 420px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
   }
 }
 
 .links {
   width: 275px;
-  border: 1px solid rgb(180, 180, 180);
+  border: 1px solid white;
   border-radius: 5px;
   margin: 5px;
+
+  @media (min-width: 420px) {
+    width: 300px;
+  }
+
+  @media (min-width: 768px) {
+    width: 325px;
+  }
 
   a {
     text-decoration: none;
@@ -74,7 +101,8 @@
 
 .loader {
   color: white;
-  border: 1px solid rgb(180, 180, 180);
+  border: 1px solid white;
+  margin-top: 10px;
   padding: 5px 10px;
   margin-right: 10px;
   border-radius: 5px;
@@ -87,4 +115,8 @@
   font-weight: bold;
   margin-bottom: 5px;
   border: none;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
 }
