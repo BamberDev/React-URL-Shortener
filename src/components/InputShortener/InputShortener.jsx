@@ -19,6 +19,12 @@ function InputShortener({ setInputValue }) {
     }
   };
 
+  const handleEnterPress = (event) => {
+    if (event.key === "Enter") {
+      handleClick();
+    }
+  };
+
   return (
     <div className={styles.inputContainer}>
       <h1 className={styles.title}>
@@ -29,6 +35,7 @@ function InputShortener({ setInputValue }) {
           type="text"
           placeholder="Paste a link"
           value={value}
+          onKeyDown={handleEnterPress}
           onChange={(e) => setValue(e.target.value)}
         />
         <button onClick={handleClick} className={styles.shortenButton}>
