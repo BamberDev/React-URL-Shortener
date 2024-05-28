@@ -52,7 +52,7 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border: none;
-    background-color: rgb(180, 180, 180);
+    background-color: rgb(140, 140, 140);
     cursor: pointer;
 
     @media (min-width: 420px) {
@@ -61,6 +61,25 @@
 
     @media (min-width: 768px) {
       font-size: 22px;
+    }
+  }
+
+  .alert {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 275px;
+    background-color: white;
+    text-align: center;
+    padding: 25px;
+    border-radius: 5px;
+    z-index: 10;
+    font-size: 20px;
+
+    @media (min-width: 768px) {
+      width: 350px;
+      font-size: 24px;
     }
   }
 }
